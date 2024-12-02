@@ -1,0 +1,33 @@
+<a
+  [routerLink]="['/admin', post.postId]"
+  class="block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 p-6"
+>
+  <div class="flex justify-between items-start mb-4">
+    <h3 class="text-xl font-semibold text-gray-800">{{ post.title }}</h3>
+    <span
+      class="text-sm px-2 py-1 bg-gray-100 rounded-full text-gray-600 capitalize"
+      >{{ post.status }}</span
+    >
+  </div>
+
+  <p class="text-gray-600 mb-4 line-clamp-3">{{ post.content }}</p>
+
+  <div
+    class="flex flex-wrap gap-2 mb-4"
+    *ngIf="post.tags && post.tags.length > 0"
+  >
+    <span
+      *ngFor="let tag of post.tags"
+      class="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full"
+    >
+      {{ tag }}
+    </span>
+  </div>
+
+  <div class="flex flex-col gap-2 text-sm text-gray-500">
+    <div class="flex items-center">
+      <span class="mr-2">By</span>
+      <span class="font-medium">{{ post.author || 'Unknown Author' }}</span>
+    </div>
+  </div>
+</a>
