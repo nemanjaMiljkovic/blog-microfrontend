@@ -1,12 +1,41 @@
 import { App } from './app/app';
-import {createRoot} from "react-dom/client";
+import { createRoot } from "react-dom/client";
+import type { Root } from 'react-dom/client';
 
 class ReactMFE extends HTMLElement {
+  private postId: string | null = null;
+  private root: Root | null = null;
+  private mountPoint: HTMLSpanElement | null = null;
+
+  static get observedAttributes() {
+    return ['post-id'];
+  }
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (name === 'post-id') {
+      this.postId = newValue;
+      this.updateApp();
+    }
+  }
+
   connectedCallback() {
-    const mountPoint = document.createElement('span');
-    this.attachShadow({ mode: 'open' }).appendChild(mountPoint);
-    const root = createRoot(mountPoint);
-    root.render(<App />);
+    this.mountPoint = document.createElement('div');
+    this.attachShadow({ mode: 'open' }).appendChild(this.mountPoint);
+    this.root = createRoot(this.mountPoint);
+    this.updateApp();
+  }
+
+  disconnectedCallback() {
+    if (this.root) {
+      this.root.unmount();
+    }
+  }
+
+  private updateApp() {
+    if (this.root) {
+      this.root.render(<App postId={this.postId} />);
+    }
   }
 }
+
 customElements.define('react-mfe', ReactMFE);
