@@ -20,7 +20,6 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.appState.getPosts().subscribe(posts => {
       this.posts = posts;
-      console.log('Posts from state:', this.posts);
     });
   }
 }

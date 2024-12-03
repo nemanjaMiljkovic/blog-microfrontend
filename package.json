@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nx run-many -t serve -p shell,admin"
   },
+  "packageManager": "pnpm@9.14.2",
   "private": true,
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "~1.9.1",
