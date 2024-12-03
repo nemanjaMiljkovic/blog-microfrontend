@@ -5,7 +5,7 @@ import type { Root } from 'react-dom/client';
 class ReactMFE extends HTMLElement {
   private postId: string | null = null;
   private root: Root | null = null;
-  private mountPoint: HTMLSpanElement | null = null;
+  private mountPoint: HTMLDivElement | null = null;
 
   static get observedAttributes() {
     return ['post-id'];
@@ -20,7 +20,7 @@ class ReactMFE extends HTMLElement {
 
   connectedCallback() {
     this.mountPoint = document.createElement('div');
-    this.attachShadow({ mode: 'open' }).appendChild(this.mountPoint);
+    this.appendChild(this.mountPoint);
     this.root = createRoot(this.mountPoint);
     this.updateApp();
   }
@@ -33,7 +33,7 @@ class ReactMFE extends HTMLElement {
 
   private updateApp() {
     if (this.root) {
-      this.root.render(<App postId={this.postId} />);
+      this.root.render(<App />);
     }
   }
 }

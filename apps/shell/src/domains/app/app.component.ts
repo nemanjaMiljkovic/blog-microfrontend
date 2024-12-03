@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { init } from '@module-federation/enhanced/runtime';
 import { CommonModule } from '@angular/common';
-import { DataService } from './services/data.service';
 import { AppState } from './state/app.state';
 import { finalize } from 'rxjs';
+import { UserService } from '../users/services';
+import { PostsService } from '../posts/services';
 
 init({
   name: 'shell',
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
   isLoadingPosts = false;
 
   constructor(
-    private dataService: DataService,
+    private userService: UserService,
+    private postService: PostsService,
     private appState: AppState
   ) {}
 
@@ -38,7 +40,7 @@ export class AppComponent implements OnInit {
   private loadInitialData() {
     // Load users first
     this.isLoadingUsers = true;
-    this.dataService.fetchUsers()
+    this.userService.fetchUsers()
       .pipe(finalize(() => this.isLoadingUsers = false))
       .subscribe({
         error: (error) => console.error('Error fetching users:', error)
@@ -46,7 +48,7 @@ export class AppComponent implements OnInit {
 
     // Then load posts
     this.isLoadingPosts = true;
-    this.dataService.fetchPosts()
+    this.postService.fetchPosts()
       .pipe(finalize(() => this.isLoadingPosts = false))
       .subscribe({
         error: (error) => console.error('Error fetching posts:', error)

@@ -5,6 +5,13 @@ const config: ModuleFederationConfig = {
   exposes: {
     './Module': './src/remote-entry.tsx',
   },
+
+  shared: (name, config) => {
+    // We want lodash to be tree shaken, and bundled into each host/remote separately.
+    if (name === '@hookform/resolvers/zod') {
+      return false;
+    }
+  },
 };
 
 /**

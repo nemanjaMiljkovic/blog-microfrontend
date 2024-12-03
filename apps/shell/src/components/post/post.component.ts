@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PostWithAuthor } from '../../app/state/app.state';
+import { PostWithAuthor } from '../../domains/posts/entity';
 
 @Component({
   selector: 'app-post',

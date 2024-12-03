@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
-import { Post } from '../../domains/posts/entity';
-
-export interface User {
-  userId: string;
-  name: string;
-  email: string;
-  role: string;
-}
-
-export interface PostWithAuthor extends Post {
-  author?: string;
-}
+import { Post, PostWithAuthor } from '../../posts/entity';
+import { User } from '../../users/entity';
 
 @Injectable({
   providedIn: 'root'

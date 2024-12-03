@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PostComponent } from '../post/post.component';
-import { AppState, PostWithAuthor } from '../../app/state/app.state';
+import { PostWithAuthor } from '../../domains/posts/entity';
+import { AppState } from '../../domains/app/state/app.state';
 
 @Component({
   selector: 'app-posts',

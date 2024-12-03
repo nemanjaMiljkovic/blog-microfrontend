@@ -1,11 +1,14 @@
-// import NxWelcome from './nx-welcome';
 import '../styles.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { EditPost } from './pages/EditPost';
 
 export function App() {
   return (
-    <h1 className='text-3xl font-bold underline'>
-      Admin
-    </h1>
+    <Router>
+      <Routes>
+        <Route path="/admin/:postId" element={<EditPost />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -9,3 +9,7 @@ export interface Post {
     status: string;
   }
   
+  export interface PostWithAuthor extends Post {
+    author?: string;
+  }
+  
